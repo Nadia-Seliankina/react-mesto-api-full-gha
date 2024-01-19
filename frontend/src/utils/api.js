@@ -1,8 +1,13 @@
 class Api {
     // Универсальный, должен работать с любым API
-    constructor(config) {
-        this._url = config.url;
-        this._headers = config.headers;
+    //constructor(config) {
+        //this._url = config.url;
+        //this._headers = config.headers;
+    //}
+
+    constructor({ url, token }) {
+        this._url = url;
+        this._token = token;
     }
 
     #onResponse(res) {
@@ -12,7 +17,11 @@ class Api {
     // Инфо о пользователе с сервера
     getInfoUser() {
         return fetch(`${this._url}/users/me`, {
-            headers: this._headers
+            //headers: this._headers
+            headers: {
+              "content-type": "application/json",
+              authorization: this._token
+            }
         })
         .then(this.#onResponse)
     }
@@ -20,7 +29,11 @@ class Api {
     // Начальные карточки с сервера
     getInitialCards() {
         return fetch(`${this._url}/cards`, {
-            headers: this._headers
+            //headers: this._headers
+            headers: {
+                "content-type": "application/json",
+                authorization: this._token
+            }
         })
         .then(this.#onResponse)
     }
@@ -33,7 +46,11 @@ class Api {
     editProfile(data) {
         return fetch(`${this._url}/users/me`, {
             method: 'PATCH',
-            headers: this._headers,
+            //headers: this._headers,
+            headers: {
+                "content-type": "application/json",
+                authorization: this._token
+            },
             body: JSON.stringify({
                 name: data.name,
                 about: data.about
@@ -46,7 +63,11 @@ class Api {
     editAvatar(data) {
         return fetch(`${this._url}/users/me/avatar`, {
             method: 'PATCH',
-            headers: this._headers,
+            //headers: this._headers,
+            headers: {
+                "content-type": "application/json",
+                authorization: this._token
+            },
             body: JSON.stringify({
                 avatar: data.avatar
             })
@@ -58,7 +79,11 @@ class Api {
     removeCard(cardId) {
         return fetch(`${this._url}/cards/${cardId}`, {
             method: 'DELETE',
-            headers: this._headers
+            //headers: this._headers
+            headers: {
+                "content-type": "application/json",
+                authorization: this._token
+            }
         })
         .then(this.#onResponse)
     }
@@ -67,7 +92,11 @@ class Api {
     addCard(data) {
         return fetch(`${this._url}/cards`, {
             method: 'POST',
-            headers: this._headers,
+            //headers: this._headers,
+            headers: {
+                "content-type": "application/json",
+                authorization: this._token
+            },
             body: JSON.stringify({
                 name: data.name,
                 link: data.link
@@ -80,20 +109,29 @@ class Api {
     changeLike(cardId, isLiked) {
         return fetch(`${this._url}/cards/likes/${cardId}`, {
             method: isLiked ? 'DELETE' : 'PUT',
-            headers: this._headers
+            //headers: this._headers
+            headers: {
+                "content-type": "application/json",
+                authorization: this._token
+            }
         })
         .then(this.#onResponse)
     }
 }
 
-const configApi = {
-    url: 'https://mesto.nomoreparties.co/v1/cohort-73',
-    headers: {
-      "content-type": "application/json",
-      authorization: '0523e71c-6164-4ff4-82c6-ca81e8bb5b70'
-    }
-}
+//const configApi = {
+    // url: 'https://mesto.nomoreparties.co/v1/cohort-73',
+    //headers: {
+      //"content-type": "application/json",
+      //authorization: '0523e71c-6164-4ff4-82c6-ca81e8bb5b70'
+    //}
+//}
 
-const api = new Api(configApi);
+//const api = new Api(configApi);
+const api = new Api({
+    //url: 'http://localhost:3000',
+    url: 'https://mesto.nomoreparties.co/v1/cohort-73',
+    token: '0523e71c-6164-4ff4-82c6-ca81e8bb5b70'
+});
 
 export default api;

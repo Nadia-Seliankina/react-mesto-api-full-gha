@@ -129,14 +129,15 @@ export const login = async (req, res, next) => {
 
     // Мы рекомендуем записывать JWT в httpOnly куку.
     // Если вам проще сделать это в теле ответа, такое решение тоже будет принято
-    return res.status(constants.HTTP_STATUS_OK).send({
-      data: {
-        name: userLogin.name,
-        email: userLogin.email,
-        _id: userLogin._id,
-      },
-      token,
-    });
+    return res.status(constants.HTTP_STATUS_OK).send({ token });
+    // .send({
+    // data: {
+    // name: userLogin.name,
+    // email: userLogin.email,
+    // _id: userLogin._id,
+    // },
+    // token,
+    // });
   } catch (error) {
     next(error);
   }
