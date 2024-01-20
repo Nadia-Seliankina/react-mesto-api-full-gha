@@ -2,7 +2,7 @@
 
 import express, { json } from 'express'; // подключаем express
 import mongoose from 'mongoose';
-// import cors from 'cors';
+import cors from 'cors';
 import 'dotenv/config'; // подключать переменные окружения над роутами
 import * as dotenv from 'dotenv';
 import { errors } from 'celebrate';
@@ -27,16 +27,8 @@ const { PORT = 3000, MONGO_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process
 // создаём приложение методом express
 const app = express();
 
-// раздача статики
-// если мидлвар для любых маршрутов первый аргумент можно опустить
-// app.use(express.static('/' + '/public'));
-
-// const __dirname = path.resolve();
-// app.use(express.static(path.join(__dirname, 'public')));
-// теперь клиент имеет доступ только к публичным файлам
-
 // чтобы не было ошибок когда с фронта тестировать бэк.
-// app.use(cors());
+app.use(cors());
 
 // мидлвар для получения body (синхронная операция обработка body на сервере)
 // Обогащает объект req.body
@@ -46,6 +38,16 @@ app.use(json());
 mongoose.connect(MONGO_URL);
 
 app.use(requestLogger); // подключаем логгер запросов
+
+// Ситуации, в которых сервер падает, должны быть предусмотрены.
+// Приложение должно работать в процессе, который в случае падения автоматически восстанавливается
+// Не забудьте удалить этот код после успешного прохождения ревью.
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+console.log('crash-test');
 
 // запускаем router
 app.use(router);
