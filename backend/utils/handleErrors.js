@@ -1,9 +1,9 @@
 // здесь обрабатываем все ошибки
 import { constants } from 'http2';
-import { NotFoundError } from '../errors/NotFoundError';
-import { BadRequestError } from '../errors/BadRequestError';
-import { UnauthorizedError } from '../errors/UnauthorizedError';
-import { ForbiddenError } from '../errors/ForbiddenError';
+import { NotFoundError } from '../errors/NotFoundError.js';
+import { BadRequestError } from '../errors/BadRequestError.js';
+import { UnauthorizedError } from '../errors/UnauthorizedError.js';
+import { ForbiddenError } from '../errors/ForbiddenError.js';
 
 const MONGO_DUBLICATE_ERROR_CODE = 11000;
 
