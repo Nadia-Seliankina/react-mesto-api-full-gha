@@ -203,7 +203,6 @@ function App() {
   }, [token]);
 
   useEffect(() => {
-    //const token = localStorage.getItem('token');
     auth(token);
   }, []);
 
