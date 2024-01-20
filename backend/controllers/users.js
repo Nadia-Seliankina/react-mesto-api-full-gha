@@ -1,9 +1,9 @@
 import { constants } from 'http2';
 import bcrypt from 'bcrypt';
-import User from '../models/user';
-import { NotFoundError } from '../errors/NotFoundError';
-import { UnauthorizedError } from '../errors/UnauthorizedError';
-import { generateToken } from '../utils/jwt';
+import User from '../models/user.js';
+import { NotFoundError } from '../errors/NotFoundError.js';
+import { UnauthorizedError } from '../errors/UnauthorizedError.js';
+import { generateToken } from '../utils/jwt.js';
 
 const SALT_ROUNDS = 10;
 

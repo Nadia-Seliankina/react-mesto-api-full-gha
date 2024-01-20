@@ -11,10 +11,10 @@ import { errors } from 'celebrate';
 // import path from 'path';
 
 // импортируем роутер
-import router from './routes/index';
+import router from './routes/index.js';
 
-import { handleErrors } from './utils/handleErrors';
-import { requestLogger, errorLogger } from './middlewares/logger';
+import { handleErrors } from './utils/handleErrors.js';
+import { requestLogger, errorLogger } from './middlewares/logger.js';
 
 // подключение переменных окружения
 dotenv.config();

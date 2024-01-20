@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { UrlRegEx } from '../utils/UrlRegEx';
+import { UrlRegEx } from '../utils/UrlRegEx.js';
 
 const cardSchema = new mongoose.Schema(
   {

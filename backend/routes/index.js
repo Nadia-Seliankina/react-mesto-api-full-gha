@@ -1,11 +1,11 @@
 // точка входа роутинга
 import { Router } from 'express';
 import { celebrate, Joi } from 'celebrate';
-import userRouter from './users';
-import cardRouter from './cards';
-import authRouter from './userAuth';
-import auth from '../middlewares/auth';
-import { NotFoundError } from '../errors/NotFoundError';
+import userRouter from './users.js';
+import cardRouter from './cards.js';
+import authRouter from './userAuth.js';
+import auth from '../middlewares/auth.js';
+import { NotFoundError } from '../errors/NotFoundError.js';
 
 const router = Router(); // создали роутер
 

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import isEmail from 'validator/lib/isEmail';
 // import bcrypt from 'bcrypt';
-import { UrlRegEx } from '../utils/UrlRegEx';
+import { UrlRegEx } from '../utils/UrlRegEx.js';
 // import { UnauthorizedError } from '../errors/UnauthorizedError';
 
 const userSchema = new mongoose.Schema(

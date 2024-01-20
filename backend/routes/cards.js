@@ -1,13 +1,13 @@
 import { Router } from 'express';
 import { celebrate, Joi } from 'celebrate';
-import { UrlRegEx } from '../utils/UrlRegEx';
+import { UrlRegEx } from '../utils/UrlRegEx.js';
 import {
   createCard,
   deleteCard,
   dislikeCard,
   getCards,
   likeCard,
-} from '../controllers/cards';
+} from '../controllers/cards.js';
 
 const cardRouter = Router(); // создали роутер
 

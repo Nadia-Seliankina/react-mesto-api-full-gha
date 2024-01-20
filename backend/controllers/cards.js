@@ -1,7 +1,7 @@
 import { constants } from 'http2';
-import Card from '../models/card';
-import { NotFoundError } from '../errors/NotFoundError';
-import { ForbiddenError } from '../errors/ForbiddenError';
+import Card from '../models/card.js';
+import { NotFoundError } from '../errors/NotFoundError.js';
+import { ForbiddenError } from '../errors/ForbiddenError.js';
 
 /* eslint consistent-return: "off" */
 export const getCards = async (req, res, next) => {

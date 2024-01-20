@@ -1,6 +1,6 @@
 // перехватывает запросы к пользователю
 import jwt from 'jsonwebtoken';
-import { UnauthorizedError } from '../errors/UnauthorizedError';
+import { UnauthorizedError } from '../errors/UnauthorizedError.js';
 
 const { JWT_SECRET, NODE_ENV } = process.env;
 

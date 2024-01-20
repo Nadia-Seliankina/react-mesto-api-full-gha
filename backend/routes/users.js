@@ -2,8 +2,8 @@ import { Router } from 'express';
 import { celebrate, Joi } from 'celebrate';
 import {
   getUserById, getUsers, updateUserAvatar, updateUserProfile, getUserActive,
-} from '../controllers/users';
-import { UrlRegEx } from '../utils/UrlRegEx';
+} from '../controllers/users.js';
+import { UrlRegEx } from '../utils/UrlRegEx.js';
 
 // const router = require('express').Router(); // создали роутер
 const userRouter = Router(); // создали роутер

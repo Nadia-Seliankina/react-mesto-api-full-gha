@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { celebrate, Joi } from 'celebrate';
-import { UrlRegEx } from '../utils/UrlRegEx';
+import { UrlRegEx } from '../utils/UrlRegEx.js';
 import {
   createUser, login,
-} from '../controllers/users';
+} from '../controllers/users.js';
 
 const authRouter = Router(); // создали роутер
 
