@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+/* eslint import/extensions: "off" */
 import isEmail from 'validator/lib/isEmail.js';
 // import bcrypt from 'bcrypt';
 import { UrlRegEx } from '../utils/UrlRegEx.js';
@@ -8,7 +9,6 @@ const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      unique: true,
       default: 'Жак-Ив Кусто',
       minlength: [2, 'Минимальная длина 2 символа'],
       maxlength: [30, 'Максимальная длина 30 символов'],

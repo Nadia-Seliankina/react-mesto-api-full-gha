@@ -11,6 +11,7 @@ import { errors } from 'celebrate';
 // import path from 'path';
 
 // импортируем роутер
+/* eslint import/extensions: "off" */
 import router from './routes/index.js';
 
 import { handleErrors } from './utils/handleErrors.js';
@@ -28,7 +29,7 @@ const { PORT = 3000, MONGO_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process
 const app = express();
 
 // чтобы не было ошибок когда с фронта тестировать бэк.
-app.use(cors());
+app.use(cors()); // открытый API, открыт любому домену
 
 // мидлвар для получения body (синхронная операция обработка body на сервере)
 // Обогащает объект req.body

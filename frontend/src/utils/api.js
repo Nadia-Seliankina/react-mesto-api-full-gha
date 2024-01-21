@@ -23,7 +23,6 @@ class Api {
               "Content-Type": "application/json",
               authorization: `Bearer ${token}`,
               //authorization: this._token,
-              //authorization: token,
             }
         })
         .then(this.#onResponse)
@@ -38,7 +37,6 @@ class Api {
                 "Content-Type": "application/json",
                 authorization: `Bearer ${token}`,
                 //authorization: this._token,
-                //authorization: token,
             }
         })
         .then(this.#onResponse)
@@ -122,7 +120,7 @@ class Api {
     // Лайкнуть карточку
     changeLike(cardId, isLiked) {
         const token = localStorage.getItem('token');
-        return fetch(`${this._url}/cards/likes/${cardId}`, {
+        return fetch(`${this._url}/cards/${cardId}/likes`, {
             method: isLiked ? 'DELETE' : 'PUT',
             //headers: this._headers
             headers: {
@@ -146,9 +144,10 @@ class Api {
 //const api = new Api(configApi);
 
 const api = new Api({
-    url: 'http://localhost:3000',
-    //url: 'https://mesto.nomoreparties.co/v1/cohort-73',
-    //token: '0523e71c-6164-4ff4-82c6-ca81e8bb5b70'
+    url: 'https://api.mesto.seliankina.nomoredomainsmonster.ru',
+    // url: 'https://mesto.nomoreparties.co/v1/cohort-73',
+    // url: 'http://localhost:3000',
+    // token: '0523e71c-6164-4ff4-82c6-ca81e8bb5b70'
 });
 
 export default api;

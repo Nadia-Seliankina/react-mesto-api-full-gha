@@ -1,6 +1,7 @@
 // точка входа роутинга
 import { Router } from 'express';
 import { celebrate, Joi } from 'celebrate';
+/* eslint import/extensions: "off" */
 import userRouter from './users.js';
 import cardRouter from './cards.js';
 import authRouter from './userAuth.js';

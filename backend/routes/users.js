@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { celebrate, Joi } from 'celebrate';
+/* eslint import/extensions: "off" */
 import {
   getUserById, getUsers, updateUserAvatar, updateUserProfile, getUserActive,
 } from '../controllers/users.js';

@@ -1,5 +1,6 @@
 import { constants } from 'http2';
 import bcrypt from 'bcrypt';
+/* eslint import/extensions: "off" */
 import User from '../models/user.js';
 import { NotFoundError } from '../errors/NotFoundError.js';
 import { UnauthorizedError } from '../errors/UnauthorizedError.js';

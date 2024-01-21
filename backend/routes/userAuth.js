@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { celebrate, Joi } from 'celebrate';
+/* eslint import/extensions: "off" */
 import { UrlRegEx } from '../utils/UrlRegEx.js';
 import {
   createUser, login,

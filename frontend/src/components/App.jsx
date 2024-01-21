@@ -15,7 +15,6 @@ import api from "../utils/api";
 import {
   Routes,
   Route,
-  Navigate,
   useNavigate,
 } from "react-router-dom";
 import Register from "./Register";
@@ -87,8 +86,8 @@ function App() {
 
   const handleCardLike = (card) => {
     // проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some((i) => {
-      return i._id === currentUser._id;
+    const isLiked = card.likes.some((id) => {
+      return id === currentUser._id;
     });
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
@@ -135,15 +134,16 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-    api
-      .getAllInfo()
-      .then(([dataUser, dataCards]) => {
-        console.log([dataUser, dataCards]);
-        setCurrentUser(dataUser);
-        setCards(dataCards);
-      })
-      .catch((err) => console.log(err));
-  }}, [loggedIn]);
+      api
+        .getAllInfo()
+        .then(([dataUser, dataCards]) => {
+          console.log([dataUser, dataCards]);
+          setCurrentUser(dataUser);
+          setCards(dataCards);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [loggedIn]);
 
   const handleAddPlaceSubmit = (card) => {
     //setIsLoading(true);
@@ -169,7 +169,7 @@ function App() {
       e.preventDefault();
       api
         .removeCard(selectedCard._id)
-        .then((res) => {
+        .then(() => {
           setCards((state) => {
             return state.filter((item) => {
               return item._id !== selectedCard._id;
@@ -187,24 +187,26 @@ function App() {
 
   const auth = (token) => {
     return apiReact.checkToken(token)
-    .then((res) => {
-      if (token) {
-        setLoggedIn(true);
-        localStorage.setItem('loggedIn', true)
-      }
-    })
-    .catch((err) => console.log(err))
+      .then(() => {
+        if (token) {
+          setLoggedIn(true);
+          localStorage.setItem('loggedIn', true)
+        }
+      })
+      .catch((err) => console.log(err))
   };
 
   useEffect(() => {
-        const emailStorage = localStorage.getItem('email');
-        console.log(emailStorage);
-        setUserEmail(emailStorage);
+    const emailStorage = localStorage.getItem('email');
+    console.log(emailStorage);
+    setUserEmail(emailStorage);
   }, [token]);
 
   useEffect(() => {
-    auth(token);
-  }, []);
+    if(token){
+      auth(token);
+    }
+  }, [token]);
 
   const handleRegister = ({ email, password }) => {
     return apiReact
@@ -254,7 +256,7 @@ function App() {
   };
 
   //useEffect(() => { 
-    //if (loggedIn) navigate('/'); 
+  //if (loggedIn) navigate('/'); 
   //}, [loggedIn]);
 
   return (
@@ -270,25 +272,25 @@ function App() {
             path="/"
             element={
               <>
-              <ProtectedRoute
-                element={Main}
-                loggedIn={loggedIn}
-                onEditProfile={handleEditProfileClick}
-                onAddPlace={handleAddPlaceClick}
-                onEditAvatar={handleEditAvatarClick}
-                onCardClick={handleCardClick}
-                onCardLike={handleCardLike}
-                cards={cards}
-                onCardDelete={handleCardDelete}
-              />
-              <ProtectedRoute element={Footer} loggedIn={loggedIn} />
+                <ProtectedRoute
+                  element={Main}
+                  loggedIn={loggedIn}
+                  onEditProfile={handleEditProfileClick}
+                  onAddPlace={handleAddPlaceClick}
+                  onEditAvatar={handleEditAvatarClick}
+                  onCardClick={handleCardClick}
+                  onCardLike={handleCardLike}
+                  cards={cards}
+                  onCardDelete={handleCardDelete}
+                />
+                <ProtectedRoute element={Footer} loggedIn={loggedIn} />
               </>
             }
           />
           <Route
             path="/sign-up"
             element={<Register onRegister={handleRegister} />}
-           />
+          />
           <Route path="/sign-in" element={<Login onLogin={handleLogin} />} />
         </Routes>
         {/* Pop-up Редактировать профиль */}

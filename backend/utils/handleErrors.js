@@ -1,5 +1,6 @@
 // здесь обрабатываем все ошибки
 import { constants } from 'http2';
+/* eslint import/extensions: "off" */
 import { NotFoundError } from '../errors/NotFoundError.js';
 import { BadRequestError } from '../errors/BadRequestError.js';
 import { UnauthorizedError } from '../errors/UnauthorizedError.js';

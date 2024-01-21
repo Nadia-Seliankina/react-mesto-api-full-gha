@@ -1,4 +1,5 @@
 import { constants } from 'http2';
+/* eslint import/extensions: "off" */
 import Card from '../models/card.js';
 import { NotFoundError } from '../errors/NotFoundError.js';
 import { ForbiddenError } from '../errors/ForbiddenError.js';
